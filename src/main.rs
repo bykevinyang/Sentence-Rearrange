@@ -12,10 +12,23 @@ fn main() {
         let split = line.split(" ");
         let words: Vec<&str> = split.collect();
         
+        let mut counter: i32 = 1;
+
+        let mut reconstructed: String = String::new();
+
         for perm in words.iter().permutations(words.len()).unique(){
-            println!("{:?}", perm);
+            for w in perm{
+                reconstructed += w;
+                reconstructed += " ";
+            }
+            reconstructed.pop();
+
+            println!("{:?}: {:?}", counter, reconstructed);
+            reconstructed = "".to_string();
+            counter += 1;
         }
     }    
+    println!("Exiting")
 }
 
 fn line_read() -> String{
